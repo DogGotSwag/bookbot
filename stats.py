@@ -4,14 +4,21 @@ def num_of_words(text):
 
 def get_num_of_characters(text):
     dict = {}
-
-    symbols_and_characters = list(text)
-    for char in symbols_and_characters:
-        lower_char = char.lower()
-        if lower_char in dict:
-            dict[lower_char] = dict[lower_char] + 1
+    for char in text:
+        lowered = char.lower()
+        if lowered in dict:
+            dict[lowered] += 1
         else:
-            dict[lower_char] = 1
+            dict[lowered] = 1
 
     return dict
 
+def sort_on(items):
+    return items["num"]
+
+def sort_dict(dict):
+    new_dict = []
+    for key in dict:
+        new_dict.append({"char": key, "num": dict[key]})
+    new_dict.sort(reverse=True, key=sort_on)
+    return new_dict
